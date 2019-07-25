@@ -37,6 +37,9 @@ public class PropertiesMailConfiguration implements MailConfiguration {
   public static final String PROPERTY_USER = "mail.user";
   public static final String PROPERTY_PASSWORD = "mail.password";
 
+  public static final String PROPERTY_DEST_FOLDER = "mail.copy.destFolder";
+  public static final String PROPERTY_SRC_FOLDER = "mail.copy.srcFolder";
+  public static final String PROPERTY_COPY_MODE = "mail.copy.mode";
   public static final String PROPERTY_POLL_FOLDER = "mail.poll.folder";
   public static final String PROPERTY_SENDER = "mail.sender";
   public static final String PROPERTY_SENDER_ALIAS = "mail.sender.alias";
@@ -66,6 +69,21 @@ public class PropertiesMailConfiguration implements MailConfiguration {
   @Override
   public String getPassword() {
     return getProperties().getProperty(PROPERTY_PASSWORD);
+  }
+
+  @Override
+  public String getCopyMode() {
+    return getProperties().getProperty(PROPERTY_COPY_MODE);
+  }
+
+  @Override
+  public String getCopySrcFolder() {
+    return getProperties().getProperty(PROPERTY_SRC_FOLDER);
+  }
+
+  @Override
+  public String getCopyDestFolder() {
+    return getProperties().getProperty(PROPERTY_DEST_FOLDER);
   }
 
   @Override

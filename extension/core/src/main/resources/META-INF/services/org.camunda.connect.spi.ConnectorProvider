@@ -1,3 +1,4 @@
 org.camunda.bpm.extension.mail.send.SendMailProvider
 org.camunda.bpm.extension.mail.poll.PollMailProvider
 org.camunda.bpm.extension.mail.delete.DeleteMailProvider
+org.camunda.bpm.extension.mail.copy.CopyMailProvider

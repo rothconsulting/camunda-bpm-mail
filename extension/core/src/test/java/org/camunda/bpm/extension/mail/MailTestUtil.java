@@ -15,15 +15,20 @@ package org.camunda.bpm.extension.mail;
 import java.io.File;
 import java.io.IOException;
 
+import javax.mail.Folder;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Multipart;
 import javax.mail.Session;
+import javax.mail.Store;
+import javax.mail.Flags.Flag;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
+
+import com.icegreen.greenmail.junit.GreenMailRule;
 
 public class MailTestUtil {
 
@@ -72,4 +77,23 @@ public class MailTestUtil {
     return message;
   }
 
+  public static Folder createFolder(String folderName, GreenMailRule greenMail) throws Exception {
+  	Store store = greenMail.getImap().createStore();
+  	store.connect("test@camunda.com", "bpmn");
+  	
+  	Folder destFolder = store.getFolder(folderName);
+  	destFolder.create(Folder.HOLDS_MESSAGES);
+  	destFolder.open(Folder.READ_WRITE);
+
+  	return destFolder;
+  }
+
+  public static Message[] clearFolder(Folder folder) throws Exception {
+	    // Clear destination folder
+	    Message[] msgs = folder.getMessages();
+	    for (Message msg : msgs) {
+	    	msg.setFlag(Flag.DELETED, true);
+	    }
+	    return folder.expunge();
+  }
 }

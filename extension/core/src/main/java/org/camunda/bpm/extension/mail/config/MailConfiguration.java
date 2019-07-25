@@ -69,4 +69,19 @@ public interface MailConfiguration {
    */
   Duration getNotificationLookupTime();
 
+  /**
+   * @return the copy mode of "copy" or "move"
+   */
+  String getCopyMode();
+
+  /**
+   * @return the copy source folder
+   */
+  String getCopySrcFolder();
+
+  /**
+   * @return the copy destination folder
+   */
+  String getCopyDestFolder();
+
 }

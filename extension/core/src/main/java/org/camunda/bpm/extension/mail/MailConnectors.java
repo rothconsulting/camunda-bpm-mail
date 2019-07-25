@@ -12,6 +12,7 @@
  */
 package org.camunda.bpm.extension.mail;
 
+import org.camunda.bpm.extension.mail.copy.CopyMailConnector;
 import org.camunda.bpm.extension.mail.delete.DeleteMailConnector;
 import org.camunda.bpm.extension.mail.poll.PollMailConnector;
 import org.camunda.bpm.extension.mail.send.SendMailConnector;
@@ -28,7 +29,11 @@ public class MailConnectors {
   }
 
   public static DeleteMailConnector deleteMails() {
-    return Connectors.getConnector(DeleteMailConnector.CONNECTOR_ID);
-  }
+	    return Connectors.getConnector(DeleteMailConnector.CONNECTOR_ID);
+	  }
+
+  public static CopyMailConnector copyMails() {
+	    return Connectors.getConnector(CopyMailConnector.CONNECTOR_ID);
+	  }
 
 }
