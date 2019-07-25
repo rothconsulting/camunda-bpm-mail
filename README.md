@@ -120,13 +120,12 @@ Input parameter | Type | Required?
 ----------------|------|----------
 srcFolder | String (e.g. 'INBOX') | no (read from config)
 destFolder | String (e.g. 'PROCESSED') | no (read from config)
-mode | String ('move' | 'copy')<sup>2</sup> | no (read from config)
-
+mode | String ('move' or 'copy')<sup>2</sup> | no (read from config)
 mails  | List of Mail | no<sup>1</sup>
 messageIds | List of String | no<sup>1</sup>
 messageNumbers | List of Integer | no<sup>1</sup>
 
-<sup>1</sup> Either `mails`, `messageIds` or `messageNumbers` have to be set.
+<sup>1</sup> Either `mails`, `messageIds` or `messageNumbers` have to be set.<br>
 <sup>2</sup> If set to 'move' messages are copied to the destination folder and removed from the source folder. Any other value will copy the messages
 
 ### React on incoming Mails
