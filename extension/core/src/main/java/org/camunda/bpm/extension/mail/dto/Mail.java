@@ -31,8 +31,6 @@ import javax.mail.Part;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-import org.camunda.bpm.extension.mail.config.MailConfiguration;
-import org.camunda.bpm.extension.mail.config.MailConfigurationFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

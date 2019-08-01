@@ -42,11 +42,11 @@ public class CopyMailInvocation extends AbstractRequestInvocation<List<Message>>
 	Folder destFolder = mailService.ensureOpenFolder(destFolderName);
 	srcFolder.copyMessages(target.toArray(new Message[0]), destFolder);
 
-	if ("move".equals(request.getMode())) {
+	if ("move".equalsIgnoreCase(request.getMode())) {
 		// Delete source
 		for (Message message : target) {
-		      message.setFlag(Flag.DELETED, true);
-		    }
+			message.setFlag(Flag.DELETED, true);
+		}
 	}
 
     return null;

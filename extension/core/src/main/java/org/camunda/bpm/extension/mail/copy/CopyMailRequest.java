@@ -46,6 +46,9 @@ public class CopyMailRequest extends AbstractConnectorRequest<EmptyResponse> {
     String mode = getRequestParameter(PARAM_MODE);
     if (mode == null) {
         mode = configuration.getCopyMode();
+        if (mode == null) {
+            mode = "copy";
+        }
     }
     return mode;
   }
@@ -113,6 +116,11 @@ public class CopyMailRequest extends AbstractConnectorRequest<EmptyResponse> {
 
   @Override
   protected boolean isRequestValid() {
+
+    if ( !( "copy".equalsIgnoreCase(getMode()) || "move".equalsIgnoreCase(getMode() ) ) ) {
+      LOGGER.warn("invalid request: invalid parameter '"+PARAM_MODE+"' in {}. Use 'copy' or 'move', default is 'copy'.", this);
+      return false;
+    }
 
     if (getSrcFolder() == null || getSrcFolder().isEmpty()) {
       LOGGER.warn("invalid request: missing parameter '"+PARAM_SRC_FOLDER+"' in {}", this);

@@ -9,6 +9,7 @@ A community extension for Camunda BPM to integrate emails in a process and inter
 * send mail
 * poll mails
 * delete mails
+* copy mails
 * react on incoming mails
 
 ## Install
@@ -126,7 +127,7 @@ messageIds | List of String | no<sup>1</sup>
 messageNumbers | List of Integer | no<sup>1</sup>
 
 <sup>1</sup> Either `mails`, `messageIds` or `messageNumbers` have to be set.<br>
-<sup>2</sup> If set to 'move' messages are copied to the destination folder and removed from the source folder. Any other value will copy the messages
+<sup>2</sup> Not set messages will be copied to the desination folder. If set to 'move', messages are removed from the source folder after copying. A values other than 'move' or 'copy' cause an error to be thrown.
 
 ### React on incoming Mails
 
