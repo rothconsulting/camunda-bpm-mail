@@ -121,6 +121,7 @@ Input parameter | Type | Required?
 ----------------|------|----------
 srcFolder | String (e.g. 'INBOX') | no (read from config)
 destFolder | String (e.g. 'PROCESSED') | no (read from config)
+uidSupport | String ('false' or 'move' or 'copy')<sup>3</sup> | no (read from config)
 mode | String ('move' or 'copy')<sup>2</sup> | no (read from config)
 mails  | List of Mail | no<sup>1</sup>
 messageIds | List of String | no<sup>1</sup>
@@ -128,6 +129,7 @@ messageNumbers | List of Integer | no<sup>1</sup>
 
 <sup>1</sup> Either `mails`, `messageIds` or `messageNumbers` have to be set.<br>
 <sup>2</sup> Not set messages will be copied to the desination folder. If set to 'move', messages are removed from the source folder after copying. A values other than 'move' or 'copy' cause an error to be thrown.
+<sup>3</sup> the uid is used to reference copied or moved messages in the destination folder. Mail servers need to support UIDPLUS for 'copy' or MOVEEXTENSION for 'move'. This allows to retrieve the copied or moved messages and keep those in the process instance. If the mail server does not support one of the features, the mail cannot be referenced for a subsequent copy of move anymore. Support for MS Exchange Servers is documented [here](https://docs.microsoft.com/en-us/openspecs/exchange_server_protocols/ms-oximap4/8dec14f1-7989-448e-aa3f-49f12620fcd6).
 
 ### React on incoming Mails
 

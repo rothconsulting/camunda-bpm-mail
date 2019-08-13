@@ -25,7 +25,6 @@ import org.camunda.bpm.extension.mail.MailConnectors;
 import org.camunda.bpm.extension.mail.MailTestUtil;
 import org.camunda.bpm.extension.mail.config.MailConfiguration;
 import org.camunda.bpm.extension.mail.copy.CopyMailConnector;
-import org.camunda.bpm.extension.mail.dto.Mail;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -55,7 +54,7 @@ public class CopyMailConnectorTest {
     GreenMailUtil.sendTextEmailTest("test@camunda.com", "from@camunda.com", "mail-1", "body");
     GreenMailUtil.sendTextEmailTest("test@camunda.com", "from@camunda.com", "mail-2", "body");
 
-   	destFolder = MailTestUtil.createFolder("DONE", greenMail);
+   	destFolder = MailTestUtil.createFolder(DEST_FOLDER, greenMail);
     MailTestUtil.clearFolder(destFolder);
   }
 

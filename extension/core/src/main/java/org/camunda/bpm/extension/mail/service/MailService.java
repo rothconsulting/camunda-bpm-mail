@@ -59,13 +59,28 @@ public class MailService {
   }
 
   public Folder ensureOpenFolder(Folder folder) throws MessagingException {
-    ensureConnectedStore(folder.getStore());
+	    ensureConnectedStore(folder.getStore());
 
-    if (!folder.isOpen()) {
-      openFolder(folder);
+	    if (!folder.isOpen()) {
+	      openFolder(folder);
+	    }
+
+	    return folder;
+	  }
+
+  public void closeFolder(String folderName) throws MessagingException {
+	    if (store == null) {
+	      return;
+	    }
+
+	    Folder folder = store.getFolder(folderName);
+	    closeFolder(folder);
+	  }
+
+  public void closeFolder(Folder folder) throws MessagingException {
+    if (folder != null && folder.isOpen()) {
+      folder.close(false);
     }
-
-    return folder;
   }
 
   private void ensureConnectedStore(Store store) throws MessagingException {

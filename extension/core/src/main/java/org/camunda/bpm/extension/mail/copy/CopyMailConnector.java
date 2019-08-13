@@ -61,12 +61,17 @@ public class CopyMailConnector extends AbstractConnector<CopyMailRequest, EmptyR
       Folder srcFolder = mailService.ensureOpenFolder(request.getSrcFolder());
       List<Message> messages = Arrays.asList(getMessages(srcFolder, request));
 
-      CopyMailInvocation invocation = new CopyMailInvocation(messages, request, requestInterceptors, mailService);
+      if (messages.size() > 0) {
+          CopyMailInvocation invocation = new CopyMailInvocation(messages, request, requestInterceptors, mailService);
 
-      invocation.proceed();
+          @SuppressWarnings("unchecked")
+		  List<Message> newMessages = (List<Message>) invocation.proceed();
+
+          return new CopyMailResponse(newMessages, mailService);
+      }
 
       return new EmptyResponse();
-
+      
     } catch (Exception e) {
       throw new MailConnectorException("failed to copy mails", e);
     }

@@ -84,4 +84,10 @@ public interface MailConfiguration {
    */
   String getCopyDestFolder();
 
+  /**
+   * 
+   * @return true or false whether the mail server supports UID
+   */
+  String getSuppportUid();
+
 }

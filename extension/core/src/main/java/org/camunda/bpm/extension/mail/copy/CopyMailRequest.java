@@ -27,7 +27,8 @@ public class CopyMailRequest extends AbstractConnectorRequest<EmptyResponse> {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(CopyMailRequest.class);
 
-  protected static final String PARAM_MODE            = "mode"; // {copy | move }
+  protected static final String PARAM_SUPPORT_UID     = "false"; // Does the mail server support UID
+  protected static final String PARAM_MODE            = "mode";  // {copy | move }
   protected static final String PARAM_SRC_FOLDER      = "srcFolder";
   protected static final String PARAM_DEST_FOLDER     = "destFolder";
 
@@ -40,6 +41,22 @@ public class CopyMailRequest extends AbstractConnectorRequest<EmptyResponse> {
   public CopyMailRequest(Connector<?> connector, MailConfiguration configuration) {
     super(connector);
     this.configuration = configuration;
+  }
+
+  public String getSupportUid() {
+    String value = getRequestParameter(PARAM_SUPPORT_UID);
+    if (value == null) {
+        value = configuration.getSuppportUid();
+        if (value == null) {
+            value = "false";
+        }
+    }
+    return value;
+  }
+
+  public CopyMailRequest supprtUid(String value) {
+    setRequestParameter(PARAM_SUPPORT_UID, value.toLowerCase());
+    return this;
   }
 
   public String getMode() {
