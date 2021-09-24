@@ -1,5 +1,12 @@
 # camunda-bpm-mail
 
+[![](https://img.shields.io/badge/Community%20Extension-An%20open%20source%20community%20maintained%20project-FF4700)](https://github.com/camunda-community-hub/community)
+
+[![](https://img.shields.io/badge/Lifecycle-Abandoned-lightgrey)](https://github.com/Camunda-Community-Hub/community/blob/main/extension-lifecycle.md#abandoned-)
+[![](https://img.shields.io/badge/Lifecycle-Needs%20Maintainer%20-ff69b4)](https://github.com/Camunda-Community-Hub/community/blob/main/extension-lifecycle.md#abandoned-)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+![Build project with Maven](https://github.com/camunda-community-hub/camunda-bpm-mail/workflows/Build%20project%20with%20Maven/badge.svg)
+
 A community extension for Camunda BPM to integrate emails in a process and interact with them.
 
 ![Sample process](docs/sample-process.png)
@@ -26,13 +33,13 @@ Add `camunda-bpm-mail-core` as dependency to your application. Using Maven, you 
 <dependency>
   <groupId>org.camunda.bpm.extension</groupId>
   <artifactId>camunda-bpm-mail-core</artifactId>
-  <version>1.1.0</version>
+  <version>1.2.0</version>
 </dependency>
 ```
 
 ### For Shared Process Engine
 
-Add `camunda-bpm-mail-core-1.1.0.jar` to your application server (e.g. `apache-tomcat-8.0.24\lib`).
+Add `camunda-bpm-mail-core-1.2.0.jar` to your application server (e.g. `apache-tomcat-8.0.24\lib`).
 
 Also make sure that you included the following dependencies:
 
@@ -95,6 +102,8 @@ Output parameter | Type
 mails | List of [Mail](extension/core/src/main/java/org/camunda/bpm/extension/mail/dto/Mail.java)
 
 If `download-attachements` is set to `true` then it stores the attachments of the mails in the folder which is provided by the configuration. The path of the stored attachments can be get from the [Attachment](extension/core/src/main/java/org/camunda/bpm/extension/mail/dto/Attachment.java)s of the [Mail](extension/core/src/main/java/org/camunda/bpm/extension/mail/dto/Mail.java).
+
+By default, the polled mails are marked as read. If the property `mail.imaps.peek` is set to `true` then the mails are just polled and not marked as read. 
 
 ### Delete Mails
 
@@ -177,6 +186,9 @@ mail.store.protocol=imaps
 mail.imaps.host=imap.gmail.com
 mail.imaps.port=993
 mail.imaps.timeout=10000
+
+# if peek = false then the polled mails are marked as read
+mail.imaps.peek=false
 
 # additional config
 mail.poll.folder=INBOX
